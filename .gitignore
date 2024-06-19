@@ -1,5 +1,1 @@
-.htaccess
-application/config/config.php
-application/config/database.php
-application/ci_sessions/
-application/logs/
+
