@@ -776,7 +776,16 @@
                
                
                
-   
+               $(document).ready(function() {
+    $('#emp_id').change(function() {
+        var selectedText = $('#emp_id option:selected').text(); // Get selected text
+        $('#selected_text').val(selectedText); // Set hidden input value
+    });
+});
+
+
+
+
                
                $(document).on('change select input','.bundle_no', function (e) {
                

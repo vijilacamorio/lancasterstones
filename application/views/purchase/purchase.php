@@ -253,39 +253,7 @@
                      </tr>
                   </thead>
                </table>
-               <!--<table>-->
-                   
-                   
-                   
-                  <!--<tr>-->
-                     <!--<td style="width:10px;"></td>-->
-                     <!--<td style="width:25%;">   <input type="text" class="form-control" id="myInput1" onkeyup="search()" placeholder="Search for purchase Id.."></td>-->
-                     <!--<td style="width:10px;"></td>-->
-                     <!--<td style="width:22%;"> <input type="text" class="form-control" id="myInput2" onkeyup="search()" placeholder="Search for Phone No.."></td>-->
-                     <!--<td style="width:10px;"></td>-->
-                     <!--<td style="width:16%;">  <input type="text" class="form-control" id="myInput3" onkeyup="search()" placeholder="Search for Invoice No.."></td>-->
-                     <!--<td style="width:10px;"></td>-->
-                     <!--<td style="width:18%;"> <input type="text" class="form-control" id="myInput4" onkeyup="search()" placeholder="Search for purchase Date.."></td>-->
-                     <!--<td style="width:10px;"></td>-->
-                     <!--<td style="width:18%;"> <input type="text" class="form-control" id="myInput5" onkeyup="search()" placeholder="Search for Grand Total.."></td>-->
-                  <!--</tr>-->
-
-
-
-
-
-
-
-
-
-
-               <!--</table>-->
-               <!--<br/>-->
-               
-               
-               
-               
-               
+             
                <div class="col-sm-12">
                   <input id="search" type="text" class="form-control"  placeholder="Search for Expenses">
                   <br>
@@ -396,13 +364,22 @@
                            
                            
                        <tbody class="sortableTable__body" id="tab">
-    <?php
-    $count = 1;
-    if (!empty($allinfo) && count($allinfo[0]) > 0) {
-        foreach ($allinfo[0] as $arr) {
-            ?>
+  
+<?php
+
+$count = 1;
+usort($allinfo[0], function($a, $b) {
+   return strtotime($b['create_date']) - strtotime($a['create_date']);
+});
+
+if (count($allinfo) > 0) {
+   foreach ($allinfo[0] as $arr) {
+       ?>
+
+
             <tr style="text-align:center" class="task-list-row" data-task-id="<?php echo $count; ?>" data-pname="<?php echo $arr['chalan_no']; ?>" data-model="<?php echo $arr['vtype']; ?>" data-category="<?php echo $arr['chalan_no']; ?>" data-unit="<?php echo $arr['supplier_id'] ?>" data-supplier="<?php echo $arr['payment_due_date']; ?>">
                 <!-- ... Your existing code for table rows ... -->
+
 
                 <td data-col="0" class="0"><?php  echo $count;  ?></td>
                 
@@ -1047,13 +1024,7 @@
    .pagecontroller {
    margin: 5px;
    }
-   /* .filip-horizontal:hover{
-   background-color: crimson;
-   transition: all 1s;
-   -webkit-transform: rotateY(-360deg);
-   -ms-transform: rotateY(-360deg);
-   transform: rotateY(-360deg);
-   } */
+ 
    .ads{
    max-width: 0px !important;
    white-space: nowrap;
@@ -1119,7 +1090,7 @@
        .mobile_view{
            display: flex;
        }
-   }
+   }}
 </style>
 <div id="Customer_modal" class="modal fade" role="dialog">
    <div class="modal-dialog">

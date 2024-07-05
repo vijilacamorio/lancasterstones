@@ -2817,13 +2817,11 @@ public function get_product_info($product_nam,$product_model){
             'container_no' => $this->input->post('phone_no',TRUE),
             'payment_type'    =>  $this->input->post('payment_type',TRUE),
             'bank_id'         =>  $this->input->post('bank',TRUE),
-            
             'gtotal'    => $this->input->post('gtotal',TRUE),
             'total_amount'    => $this->input->post('total',TRUE),
-
             'remark' =>$this->input->post('remark',TRUE),
             'ac_details' => $this->input->post('ac_details',TRUE),
-
+            'sc_emp_name' => $this->input->post('selected_text',TRUE),
             'bl_no' => $this->input->post('bl_no',TRUE),
             'gtotal_preferred_currency'    => $this->input->post('customer_gtotal',TRUE),
             'total_tax'       => $this->input->post('tax_details',TRUE),
@@ -2833,8 +2831,7 @@ public function get_product_info($product_nam,$product_model){
             'eta'  =>$this->input->post('eta',TRUE),
             'payment_terms'   =>$this->input->post('terms',TRUE),
             'payment_id'=>$this->input->post('payment_id',TRUE),
-
-            'due_amount'      => $this->input->post('balance',TRUE),
+             'due_amount'      => $this->input->post('balance',TRUE),
             'total_gross' =>  $this->input->post('total_gross',TRUE),
             'amount_pay_usd'    =>  $this->input->post('paid_convert',TRUE),
             'due_amount_usd'    =>  $this->input->post('bal_convert',TRUE)    ,
@@ -2843,11 +2840,11 @@ public function get_product_info($product_nam,$product_model){
             'total_weight'=>$this->input->post('total_weight',TRUE),
             'payment_due_date'     => $this->input->post('payment_due_date',TRUE),
             'shipping_address'   => $this->input->post('shipping_address',TRUE),
-          
             'account_category' => $this->input->post('account_category', true),  
             'sub_category' => $this->input->post('sub_category', true),
             'account_subcat' => $this->input->post('account_subcat', true),
             "created_date" => date('ymd'),
+
         );
      $purchase_id_1 = $this->db->where('commercial_invoice_number',$this->input->post('commercial_invoice_number',TRUE));
         $q=$this->db->get('invoice');
@@ -2857,12 +2854,12 @@ public function get_product_info($product_nam,$product_model){
         $this->db->where('commercial_invoice_number',$this->input->post('commercial_invoice_number',TRUE));
         $this->db->delete('invoice');
         $this->db->insert('invoice', $datainv);
-        //  echo $this->db->last_query();
+        //  echo $this->db->last_query(); die();
     }
     else{
     $this->db->insert('invoice', $datainv);
-   // echo $this->db->last_query();
-    }
+    // echo $this->db->last_query(); die();
+}
 
 
 
