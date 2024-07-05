@@ -1,8 +1,7 @@
 <!-- Invoice js -->
 <script src="<?php echo base_url() ?>my-assets/js/admin_js/invoice.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>my-assets/js/countrypicker.js" type="text/javascript"></script>
-<!-- Customer type change by javascript end -->
-<!-- Add New Invoice Start -->
+ 
 
 <style>
      .btnclr{
@@ -34,16 +33,7 @@
                <img src="<?php echo base_url()  ?>asset/images/sales.png"  class="headshotphoto" style="height:50px;" />
 
                </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+       
       
       <div class="header-title">
           
@@ -51,12 +41,7 @@
            <h1><?php echo display('Edit Sale') ?></h1>
 
        </div>
-         
-         
-         
-         
-         
-         
+          
          <small></small>
          <ol class="breadcrumb" style="border: 3px solid #d7d4d6;">
             <li><a href="#"><i class="pe-7s-home"></i> <?php echo display('home') ?></a></li>
@@ -147,88 +132,115 @@
                   <form id="insert_trucking"  method="post">
                      <div class="row">
                         <div class="col-sm-6" id="payment_from_1">
-                           <div class="form-group row">
+                           
+                        <div class="form-group row">
                               <label for="customer_name" class="col-sm-4 col-form-label"><?php
                                  echo display('customer_name');
                                  
                                  ?> </label>
-                              <div class="col-sm-8">
-                                 <select name="customer_name" class="form-control customer_name" onselect="calculate();" id="customer_name">
-                                    <option value="<?php echo $customer_id; ?>"><?php echo $customer_name; ?></option>
-                                    <?php foreach($customer as $customer){?>
-                                    <option value="<?php echo html_escape($customer['customer_id'])?>"><?php echo html_escape($customer['customer_name']);?></option>
-                                    <?php }?>
-                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                                    <input id="autocomplete_customer_id" class="customer_hidden_value abc" type="hidden" style="border: 2px solid #d7d4d6;"  name="customer_id" value="{customer_name}" >
-                              </div>
-                              <?php if($this->permission1->method('add_customer','create')->access()){ ?>
-                              <?php } ?>
+
+ 
+
+                           <div class="col-sm-8">
+                           <input type="text"  name="customer_name" id="customer_name"  value="<?php  echo $all_invoice[0]['customer_id'] ; ?>"    class="form-control customer_name" style="border:2px solid #d7d4d6;"  >
+                          
                            </div>
-                        </div>
+                           </div>                    
+                           </div>
+
+
+
+
                         <div class="col-sm-6" id="payment_from">
                         <div class="form-group row">
-                        <label for="payment_type" class="col-sm-4 col-form-label"><?php
-                           echo display('payment_type');
-                           
-                           ?> <i class="text-danger">*</i></label>
-                        <div class="col-sm-8">
-                        <select name="paytype" id="paytype" class="form-control"  style="border: 2px solid #d7d4d6;"  tabindex="3" >
-                        <option value="{paytype}">{paytype}</option>
-                        <?php  foreach($payment_type as $pt){ ?>
-                        <option value="<?php  echo $pt['payment_type'] ;?>"><?php  echo $pt['payment_type'] ;?></option>
-                        <?php  } ?>
-                        </select>
-                        </div>
-                        </div>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-sm-6">
-                           <div class="form-group row">
-                              <label for="date" class="col-sm-4 col-form-label"><?php echo display('Sales Invoice date') ?> <i class="text-danger">*</i></label>
+                        <label for="date" class="col-sm-4 col-form-label"><?php echo display('Sales Invoice date') ?>  </label>
                               <div class="col-sm-8">
                                  <?php
                                     $date = date('Y-m-d');
-                                    
-                                                                       ?>
-                                 <input class=" form-control" type="date" size="50" name="invoice_date" id="date" required  style="border: 2px solid #d7d4d6;"  value="<?php  echo $all_invoice[0]['date'] ; ?>" tabindex="4" />
+                                 ?>
+                                 <input class=" form-control" type="date" size="50" name="invoice_date" id="date"    style="border: 2px solid #d7d4d6;"  value="<?php  echo $all_invoice[0]['date'] ; ?>" tabindex="4" />
                               </div>
-                           </div>
+                        </div>
+                        </div>
+                     </div>
+
+
+
+                     <div class="row">
+                        <div class="col-sm-6">
                            <div class="form-group row">
-                              <label for="billing_address" class="col-sm-4 col-form-label"><?php echo display('Billing Address') ?></label>
+                           
+                           <label for="date" class="col-sm-4 col-form-label"><?php echo display('Billing Address') ?>  </label>
                               <div class="col-sm-8">
-                                 <textarea rows="5" cols="50" name="billing_address" class=" form-control"  placeholder='Billing Address' style="border: 2px solid #d7d4d6;"  id="billing_address"> <?php  echo $all_invoice[0]['billing_address'] ; ?></textarea>
+                              
+                                  <input class=" form-control" type="text" size="50" name="billing_address" style="border: 2px solid #d7d4d6;"      value="<?php  echo $all_invoice[0]['billing_address'] ; ?>"   id="billing_address"  />
+
                               </div>
                            </div>
+
+
+                           <div class="form-group row">
+                              <label for="phone_no" class="col-sm-4 col-form-label"><?php echo ('Phone No') ?></label>
+                           <div class="col-sm-8">
+                              <input class=" form-control" type="number" size="50" name="phone_no" style="border: 2px solid #d7d4d6;"  value="<?php echo  $all_invoice[0]['container_no'] ;   ?>"    id="phone_no"  />
+                           </div>
+                           </div>
+
+
+
+
+
                            <!--<input type="hidden"  value="<?php echo $all_invoice[0]['payment_id']; ?>" name="payment_id" class="payment_id"/>-->
                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                            <input type="hidden"  value="<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>"  name="payment_id"/>
-                           <div class="form-group row">
+                       
+                           <!-- <div class="form-group row">
                               <label for="shipping_address" class="col-sm-4 col-form-label"><?php echo display('Shipping Address') ?></label>
                               <div class="col-sm-8">
                                  <textarea rows="5" cols="50" name="shipping_address" class=" form-control" placeholder='Shipping Address'  style="border: 2px solid #d7d4d6;"  id="shipping_address"><?php  echo $all_invoice[0]['shipping_address'] ; ?> </textarea>
                               </div>
+                           </div> -->
+ 
+                           <?php
+                     if($_SESSION['u_type']==3)
+                     { ?>
+                     <input type="hidden"  name="emp_id"  id="emp_id"  value="<?php  echo $get_user_id[0]['user_id'] ;?>" >
+                     <?php   } ?>
+                     <?php
+                     if($_SESSION['u_type']==2)
+                                 { ?>
+             
+
+                         <div class="form-group row">
+                           <label for="sold_by" class="col-sm-4 col-form-label">Sold By</label>
+                           <div class="col-sm-8">
+                              <select name="emp_id" id="emp_id" class="form-control" style="border: 2px solid #D7D4D6;" tabindex="3">
+                               <option value="<?php echo $all_invoice[0]['user_emp_id']; ?>"><?php echo $all_invoice[0]['sc_emp_name']; ?></option>
+                             
+                               <?php foreach($employee_id_get as $pt) { ?>
+                               <option value="<?php echo $pt['id']; ?>"><?php echo $pt['first_name'] . ' ' . $pt['last_name']; ?></option>
+                               <?php } ?>
+                               </select>
+                         <input type="hidden" name="selected_text" id="selected_text" <?php if ($all_invoice[0]['sc_emp_name'] !== '') echo 'value="' . $all_invoice[0]['sc_emp_name'] . '"'; ?>>
+
+
+
+
                            </div>
-                           <div class="form-group row">
-                              <label for="payment_terms" class="col-sm-4 col-form-label"><?php echo display('Payment Terms') ?><i class="text-danger"></i></label>
-                              <div class="col-sm-8">
-                                 <select   name="terms" id="payment_terms" class=" form-control" placeholder='Payment Terms'  style="border: 2px solid #d7d4d6;"  id="payment_terms">
-                                    <option selected value="<?php   echo $payment_terms; ?>"><?php  echo $payment_terms; ?></option>
-                                    <option value="COD">COD</option>
-                                    <option value="COD">CAD</option>
-                                    <option value="30 Days">30 Days</option>
-                                    <option value="45 Days">45 Days</option>
-                                    <option value="60 Days">60 Days</option>
-                                    <option value="90 Days">90 Days</option>
-                                    <?php foreach($payment_term as $inv){ ?>
-                                    <option value="<?php echo $inv['payment_terms'] ; ?>"><?php echo $inv['payment_terms'] ; ?></option>
-                                    <?php    }?>
-                                 </select>
+                        </div>
+                        <?php   } ?>
+
+
+
+                           <!-- <div class="form-group row">
+                           <label for="sold_by" class="col-sm-4 col-form-label">Sold By</label>
+                              <div class="col-sm-8">  
                               </div>
-                              <!-- <a href="#" class="client-add-btn btn " style="color:white;background-color:#38469f;" aria-hidden="true" data-toggle="modal" data-target="#payment_terms"><i class="ti-plus m-r-2"></i></a> -->
-                           </div>
+                           </div> -->
+
+
                             <div class="form-group row">
-                              <label for="account_category" class="col-sm-4 col-form-label">Account Category</label>
+                              <!-- <label for="account_category" class="col-sm-4 col-form-label">Account Category</label>
                                <div class="col-sm-8">
                                     <select id="ddl"  name="account_category" class="form-control"  style="border: 2px solid #d7d4d6;"  onchange="configureDropDownLists(this,document.getElementById('ddl2'))">
                                        <option value="<?php echo $all_invoice[0]['account_category']; ?>" <?php if($all_invoice[0]['account_category']) { echo 'selected'; } ?>>
@@ -253,112 +265,45 @@
                                         <option value="COST OF GOODS SOLD"><?php echo  display('COST OF GOODS SOLD');?></option>
                                         <option value="OPERATING EXPENSES"><?php echo  display('OPERATING EXPENSES');?></option>
                                     </select>
-                                </div>
+                                </div> -->
                            </div>
                             <div class="form-group row">
-                              <label  class="col-sm-4 col-form-label">Account Subcategory</label>
+                              <!-- <label  class="col-sm-4 col-form-label">Account Subcategory</label>
                               <div class="col-sm-8">
                                 <input class="form-control" name ="account_subcat" id="account_subcat" type="text" placeholder=" Account Sub Category"  style="border: 2px solid #d7d4d6;"  value="<?php echo $all_invoice[0]['account_subcat']; ?>" tabindex="1" >
-                              </div>
+                              </div> -->
                            </div>
-                                           <?php
-                     if($_SESSION['u_type']==3)
-                                 { ?>
-                        <input type="hidden"  name="emp_id"  id="emp_id"  value="<?php  echo $get_user_id[0]['user_id'] ;?>" >
-                        <?php   } ?>
-                        <?php
-                     if($_SESSION['u_type']==2)
-                                 { ?>
-                        <div class="form-group row">
-                           <label for="sold_by" class="col-sm-4 col-form-label">Sold By</label>
-                           <div class="col-sm-8">
-                              <select name="emp_id" id="emp_id" class="form-control" style="border: 2px solid #D7D4D6;" tabindex="3">
-                               <option value="<?php echo $all_invoice[0]['user_emp_id']; ?>"><?php echo $all_invoice[0]['sc_emp_name']; ?></option>
-                               <?php foreach($employee_id_get as $pt) { ?>
-                               <option value="<?php echo $pt['id']; ?>"><?php echo $pt['first_name'] . ' ' . $pt['last_name']; ?></option>
-                               <?php } ?>
-                               </select>
-                         <input type="hidden" name="selected_text" id="selected_text" <?php if ($all_invoice[0]['sc_emp_name'] !== '') echo 'value="' . $all_invoice[0]['sc_emp_name'] . '"'; ?>>
 
 
-                           </div>
-                        </div>
-                        <?php   } ?>
+             
+
+
+
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group row">
-                              <label for="date" class="col-sm-4 col-form-label"><?php echo display('Invoice Number') ?><i class="text-danger">*</i></label>
+                              <label for="date" class="col-sm-4 col-form-label"><?php echo display('invoice_no') ?> </label>
                               <div class="col-sm-8">
-                                 <input class="form-control" placeholder="Commercial Invoice Number" id="invoice"  type="text" name="commercial_invoice_number"  style="border: 2px solid #d7d4d6;"  value= "<?php  echo $all_invoice[0]['commercial_invoice_number'] ; ?>"  />
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="container_number" class="col-sm-4 col-form-label"><?php echo display('Container Number') ?> </label>
-                              <div class="col-sm-8">
-                                 <input class="form-control" placeholder="Container Number" type="text" size="50" name="container_no" id="date"  style="border: 2px solid #d7d4d6;"   value= "<?php  echo $container_no ; ?>" tabindex="4" />
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group row">
-                              <label for="date" class="col-sm-4 col-form-label"><?php echo display('B/L No') ?><i class="text-danger"></i></label>
-                              <div class="col-sm-8">
-                                 <input class="form-control" placeholder="BL Number" type="text" size="50" name="bl_no"  style="border: 2px solid #d7d4d6;"  value= "<?php  echo $all_invoice[0]['bl_no'] ; ?>"/>
-                              </div>
-                              <input type="hidden" id="invoice_hdn"/> <input type="hidden" id="invoice_hdn1"/>
-                           </div>
-                           <div class="form-group row">
-                              <label for="port_of_discharge" class="col-sm-4 col-form-label"><?php echo display('Payment Due date') ?><i class="text-danger">*</i></label>
-                              <div class="col-sm-8">
-                                 <input class="form-control" type="date" size="50" value= "<?php  echo $all_invoice[0]['payment_due_date'] ; ?>" name="payment_due_date" id="date1"  style="border: 2px solid #d7d4d6;"   tabindex="4" />
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="ETA" class="col-sm-4 col-form-label"><?php echo display('Estimated Time of Arrival') ?></label>
-                              <div class="col-sm-8">
-                                 <input class="form-control" type="date" size="50" value="<?php echo $all_invoice[0]['eta'] ; ?>"  name="eta" id="date1"  style="border: 2px solid #d7d4d6;"   tabindex="4" />
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="ETA" class="col-sm-4 col-form-label"><?php echo display('Estimated Time of Departure') ?></label>
-                              <div class="col-sm-8">
-                                 <input type="date" name="etd"  value= "<?php  echo $all_invoice[0]['etd'] ; ?>" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="port_of_discharge" class="col-sm-4 col-form-label"><?php echo display('Port Of Discharge') ?></label>
-                              <div class="col-sm-8">
-                                 <input class="form-control" type="" size="50" name="Port_of_discharge" id="date1"   value= "<?php  echo $invoice_detail[0]['Port_of_discharge']; ?>"  tabindex="4" />
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="port_of_discharge" class="col-sm-4 col-form-label">Account Subcategory</label>
-                              <div class="col-sm-8">
-                                <select class="form-control" style="border: 2px solid #d7d4d6;"  name="sub_category" id="ddl2">
-                                    <option value="<?php echo $all_invoice[0]['sub_category']; ?>" <?php if($all_invoice[0]['sub_category']) { echo 'selected'; } ?>>
-                                       <?php echo $all_invoice[0]['sub_category']; ?>
-                                    </option>
-                                </select>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label for="ETA" class="col-sm-4 col-form-label"><?php echo display('Attachments') ?></label>
-                              <div class="col-sm-6">
-                                 <p>
-                                    <label for="attachment">
-                                    <a class="btnclr btn text-light" role="button" aria-disabled="false"><i class="fa fa-upload"></i>&nbsp; Choose Files</a>
-                                    </label>
-                                    <input type="file" name="files[]" class="upload" id="attachment" style="visibility: hidden; position: absolute;" multiple/>
-                                 </p>
-                                 <?php foreach ($edit_files as $key => $attachment) { ?> 
-                                 <a href="<?php  echo base_url(); ?>uploads/<?php echo $attachment['files']; ?>" class="file-block" target=_blank><span class="file-delete"><span><i class="fa fa-trash-o"></i></span></span><?php echo $attachment['files']; ?></a>
-                                 <?php } ?>
+                                 <input class="form-control"   id="invoice"  type="text" name="commercial_invoice_number"  style="border: 2px solid #d7d4d6;"  value= "<?php  echo $all_invoice[0]['commercial_invoice_number'] ; ?>"  />
                               </div>
                            </div>
 
-                           
-                           
+
+                             <div class="form-group row">
+                              <label for="container_number" class="col-sm-4 col-form-label"><?php echo display('Payment Type') ?> </label>
+                              <div class="col-sm-8">
+                                 <!-- <input class="form-control" placeholder="Container Number" type="text" size="50" name="container_no" id="date"  style="border: 2px solid #d7d4d6;"   value= "<?php  echo $container_no ; ?>" tabindex="4" /> -->
+                                 <input type="text" name="payment_type" style="border: 2px solid #d7d4d6;"  value="<?php echo $all_invoice[0]['payment_type']; ?>"     id='Ptype' class="form-control">
+
+                              </div>
+                           </div>  
                         </div>
+
+
+                
+                        
+
+
                         <div class="col-sm-5" id="bank_div">
                            <div class="form-group row">
                               <label for="bank" class="col-sm-5   col-form-label"><?php
@@ -428,59 +373,28 @@
                         }
                      </style>
                      <div class="table-responsive">
-                        <div id="content" style="overflow-x: auto;">
-                           <?php
-                              // $count='';
-                              // $list_count=array();
-                              // foreach($all_invoice as $inv){
-                              //     $count = substr($inv['tableid'], 0, 1);
-                              //  $items[] =$count   ;                            
-                                                            
-                              
-                              
-                              
-                              
-                              // }
-                              
-                              
-                              
-                              ?>
+                    
+                    
+                     <div >
+
+
+
+
+ 
                            <?php 
                               for($m=0;$m<=count($all_invoice);$m++){ 
                                   ?>
                            <table class="table table-bordered normalinvoice table-hover" id="normalinvoice_<?php  echo $m; ?>" style="border: 2px solid #d7d4d6;" >
                               <thead>
-                                 <tr>
-                                    <th rowspan="2" class="text-center" style="width:170px;" ><?php echo display('product_name') ?><i class="text-danger">*</i>  </th>
-                                    <th rowspan="2" class="text-center" style="width:60px;"><?php echo display('Bundle No') ?><i class="text-danger">*</i></th>
-                                    <th rowspan="2"  class="text-center"><?php echo display('Description') ?></th>
-                                    <th rowspan="2" class="text-center" style="width:60px;"><?php echo display('Thick ness') ?><i class="text-danger">*</i></th>
-                                    <th rowspan="2" class="text-center"><?php echo display('Supplier Block No') ?><i class="text-danger">*</i></th>
-                                    <th rowspan="2" class="text-center" ><?php echo display('Supplier Slab No') ?><i class="text-danger">*</i> </th>
-                                    <th colspan="2"   style="width:150px;" class="text-center"><?php echo display('Gross Measurement') ?><i class="text-danger">*</i> </th>
-                                    <th rowspan="2" class="text-center"><?php echo display('Gross Sq.Ft') ?></th>
-                                    <!-- <th rowspan="2" style="width:40px;" class="text-center"><?php echo display('Slab No') ?><i class="text-danger">*</i></th> -->
-                                    <th colspan="2"  style="width:150px;" class="text-center"><?php echo display('Net Measure') ?><i class="text-danger">*</i></th>
-                                    <th rowspan="2" class="text-center"><?php echo display('Net Sq.Ft') ?></th>
-                                    <th rowspan="2"  class="text-center"><?php echo display('Cost per Sq.Ft') ?></th>
-                                    <th rowspan="2"  class="text-center"><?php echo display('Cost per Slab') ?></th>
-                                    <?php  if($all_invoice[0]['landing_cost']){ ?>
-                                    <th rowspan="2" class="land_th" style="width: 100px" class="text-center"><?php echo "Landing Cost per Sq.Ft" ?></th>
-                                    <th rowspan="2" class="land_th" style="width: 100px" class="text-center"><?php echo "Landing Cost per Slab" ?></th>
-                                    <?php  } ?>
-                                    <th rowspan="2"  class="text-center"><?php echo display('Sales') ?><br/><?php echo display('Price per Sq.Ft') ?></th>
-                                    <th rowspan="2"  class="text-center"><?php echo display('Sales Slab Price') ?></th>
-                                    <th rowspan="2" class="text-center"><?php echo display('Weight') ?></th>
-                                    <!-- <th rowspan="2" class="text-center"><?php echo display('Origin') ?></th> -->
-                                    <th rowspan="2" style="width: 100px" class="text-center"><?php echo display('Total') ?></th>
-                                    <th rowspan="2" class="text-center"><?php echo display('Action') ?></th>
-                                 </tr>
-                                 <tr>
-                                    <th class="text-center"><?php echo display('Width') ?></th>
-                                    <th class="text-center"><?php echo display('Height') ?></th>
-                                    <th class="text-center"  ><?php echo display('Width') ?></th>
-                                    <th class="text-center" ><?php echo display('Height') ?></th>
-                                 </tr>
+                        <tr  >
+                              <th class="text-center" style="text-align: center;width:2nm00px;"><?php echo display('product_name') ?></th>
+                              <th class="text-center" style="text-align: center;width: 300px;" ><?php echo display('Description') ?></th>
+                              <th class="text-center" style="width: 300px;text-align: center;"><?php echo  ('Quantity') ?></th>
+                              <th class="text-center" style="width: 150px;text-align: center;"><?php echo ('Rate') ?></th>
+                              <th class="text-center" style="text-align: center;width: 120px;" ><?php echo display('total') ?></th>
+                              <th class="text-center" style="text-align: center;" ><?php echo display('Action') ?></th>
+                           </tr>
+                        
                               </thead>
                               <style>
                                  input{
@@ -535,9 +449,13 @@
                                                                         
                                     ?>
                                  <tr>
-                                    <td>
+
+ 
+
+                                 <tr id="addPurchaseItem_1">
+                                 <td>
                                        <input type="hidden" name="tableid[]" id="tableid_1" value="<?php  echo $inv['tableid'];   ?>"/>
-                                       <input list="magicHouses" name="prodt[]" id="prodt_<?php  echo $m.$n; ?>" class="form-control product_name" value="<?php  echo $inv['product_name'];  ?>" onfocus="this.value=''" style="width:160px;" />
+                                       <input list="magicHouses" name="prodt[]" id="prodt_<?php  echo $m.$n; ?>" class="form-control product_name" value="<?php  echo $inv['product_name'];  ?>" onfocus="this.value=''"   />
                                        <datalist id="magicHouses">
                                           <?php                                
                                              foreach($product as $tx){?>
@@ -546,139 +464,57 @@
                                        </datalist>
                                        <input type='hidden' class='common_product autocomplete_hidden_value  product_id_1' value="<?php  echo $inv['product_id'];  ?>" name='product_id[]' id='SchoolHiddenId_<?php  echo $m.$n; ?>' />
                                     </td>
-                                    <td>
-                                       <input list="magic_bundle" name="bundle_no[]" id="bundle_no_<?php  echo $m.$n; ?>"  value="<?php  echo $inv['bundle_no'];  ?>"  class="form-control bundle_no"   onfocus="this.value=''" onchange="this.blur();" />
-                                       <datalist id="magic_bundle">
-                                          <?php                                
-                                             foreach($bundle as $tx){?>
-                                          <option value="<?php echo $tx['bundle_no'];?>">  <?php echo $tx['bundle_no'];  ?></option>
-                                          <?php } ?>
-                                       </datalist>
-                                       <!-- <input type="text" id="bundle_no_1" name="bundle_no[]" required="" class="bundle_no form-control" /> -->
-                                    </td>
-                                    <!-- <td>
-                                       <input type="text" id="bundle_no_<?php  //echo $m.$n; ?>" name="bundle_no[]"  value="<?php  //echo $inv['bundle_no'];  ?>" class="bundle_no form-control" />
-                                       </td> -->
+                                   
                                     <td>
                                        <input type="text" id="description_<?php  echo $m.$n; ?>" name="description[]" value="<?php  echo $inv['description'];  ?>" class="form-control" />
                                     </td>
                                     <td >
-                                       <input type="text" name="thickness[]" id="thickness_<?php  echo $m.$n; ?>" required="" value="<?php  echo $inv['thickness'];  ?>" class="form-control"/>
+                                       <input type="text" name="thickness[]" id="thickness_<?php  echo $m.$n; ?>" required="" value="<?php  echo $inv['thickness'];  ?>" class="thickness form-control"/>
                                     </td>
-                                    <td>
-                                       <input list="magic_supplier_block" name="supplier_block_no[]"  id="supplier_b_no_<?php  echo $m.$n; ?>"  value="<?php  echo $inv['supplier_block_no'];  ?>"  class="form-control supplier_block_no"  placeholder="Search Product" onfocus="this.value=''" onchange="this.blur();" />
-                                       <datalist id="magic_supplier_block">
-                                          <?php                                
-                                             foreach($supplier_block_no as $tx){?>
-                                          <option value="<?php echo $tx['supplier_block_no'];?>">  <?php echo $tx['supplier_block_no'];  ?></option>
-                                          <?php } ?>
-                                       </datalist>
-                                    </td>
-                                    <!-- <td>
-                                       <input type="text" id="supplier_b_no_<?php  echo $m.$n; ?>" name="supplier_block_no[]" required="" value="<?php  echo $inv['supplier_block_no'];  ?>" class="form-control" />
-                                       </td> -->
-                                    <td >
-                                       <input type="text"  id="supplier_s_no_<?php  echo $m.$n; ?>" name="supplier_slab_no[]" required="" value="<?php  echo $inv['supplier_slab_no'];  ?>" class="form-control"/>
-                                    </td>
-                                    <td>
-                                       <input type="text" id="gross_width_<?php  echo $m.$n; ?>" name="gross_width[]" required="" value="<?php  echo $inv['g_width'];  ?>" class="gross_width  form-control" />
-                                    </td>
-                                    <td>
-                                       <input type="text" id="gross_height_<?php  echo $m.$n; ?>" name="gross_height[]"  required=""  value="<?php  echo $inv['g_height'];  ?>" class="gross_height form-control" />
-                                    </td>
-                                    <td >
-                                       <input type="text"   style="width:60px;" readonly id="gross_sq_ft_<?php  echo $m.$n; ?>" name="gross_sq_ft[]" value="<?php  echo $inv['gross_sqft'];  ?>" class="gross_sq_ft form-control"/>
-                                    </td>
-                                    <!-- <td >
-                                       <input type="text"  id="slab_no_<?php  echo $m.$n; ?>"  name="slab_no[]"  readonly  required="" value="<?php  echo $n+1;  ?>" class="form-control"/>
-                                       </td> -->
-                                    <td>
-                                       <input type="text" id="net_width_<?php  echo $m.$n; ?>" name="net_width[]" required="" value="<?php  echo $inv['n_width'];  ?>" class="net_width form-control" />
-                                    </td>
-                                    <td>
-                                       <input type="text" id="net_height_<?php  echo $m.$n; ?>" name="net_height[]"    required="" value="<?php  echo $inv['n_height'];  ?>" class="net_height form-control" />
-                                    </td>
-                                    <td >
-                                       <input type="text"   style="width:60px;" readonly id="net_sq_ft_<?php  echo $m.$n; ?>" name="net_sq_ft[]" value="<?php  echo $inv['net_sqft'];  ?>" class="net_sq_ft form-control"/>
-                                    </td>
-                                    <td>
-                                       <span class="input-symbol-euro"><input type="text" id="cost_sq_ft_<?php  echo $m.$n; ?>"  name="cost_sq_ft[]"   style="width:60px;" value="<?php  echo $inv['cost_sqft'];  ?>" readonly  class="cost_sq_ft form-control" ></span>
-                                    <td >
-                                       <span class="input-symbol-euro"> <input type="text"  id="cost_sq_slab_<?php  echo $m.$n; ?>" name="cost_sq_slab[]"  readonly  style="width:60px;" value="<?php  echo $inv['cost_slab'];  ?>"  class="cost_sq_slab form-control"/></span>
-                                    </td>
-                                    <?php   if($inv['landing_cost']){ ?>
-                                    <td class="xdc"><span class="input-symbol-euro"><input type="text" readonly style="width:80px;" name="l_cost[]"  value="<?php  echo $inv['landing_cost'];  ?>"  class="form-control l_cost"></span></td>
-                                    <td class="xdc"><span class="input-symbol-euro"><input type="text" style="width:80px;" readonly name="l_cost_slab[]" value="<?php  echo $inv['landing_cost_slab'];  ?>"  class="form-control l_cost_slab"></span></td>
-                                    <?php  } ?>
-                                    <td>
-                                       <span class="input-symbol-euro">  <input type="text" id="sales_amt_sq_ft_<?php  echo $m.$n; ?>"  name="sales_amt_sq_ft[]"  style="width:60px;"  value="<?php  echo $inv['sales_price_sqft'];  ?>" class="sales_amt_sq_ft form-control" /></span>
-                                    </td>
-                                    <td >
-                                       <span class="input-symbol-euro">   <input type="text"  id="sales_slab_amt_<?php  echo $m.$n; ?>" name="sales_slab_amt[]"  style="width:60px;" value="<?php  echo $inv['sales_slab_price'];  ?>"  class="sales_slab_amt form-control"/>
-                                    </td>
-                                    </span>
-                                    </td>
-                                    <td>
-                                       <input type="text" id="weight_<?php  echo $m.$n; ?>" name="weight[]"  value="<?php  echo $inv['weight'];  ?>" class="weight form-control" />
-                                    </td>
-                                    <!-- <td >
-                                       <input type="text"  id="origin_<?php  echo $m.$n; ?>" name="origin[]" value="<?php  echo $inv['origin'];  ?>" class="form-control"/>
-                                       </td> -->
-                                    <td >
-                                       <span class="input-symbol-euro"><input  type="text" class="total_price form-control" style="width:70px;"   value="<?php  echo $inv['total_price'];  ?>"  id="total_<?php  echo $m.$n; ?>"     name="total_amt[]"/></span>
-                                    </td>
-                                    <td style="text-align:center;">
-                                       <button  class='delete btn btn-danger' type='button' value='Delete' ><i class='fa fa-trash'></i></button>
-                                    </td>
-                                 </tr>
+
+                              <td>
+ 
+                                 <input type="text"  id="supplier_s_no_<?php  echo $m.$n; ?>" name="supplier_slab_no[]" required="" value="<?php  echo $inv['supplier_slab_no'];  ?>" class="supplier_slab_no  form-control"/>
+
+                              </td>
+                              <td>
+                                 <input type="hidden" name="net_height[]" class="net_height form-control" />
+                                 <span class="input-symbol-euro">
+                                 <input class="sum_amount form-control mobile_price" type="text" style="width:165px;" readonly   value="<?php  echo $inv['total_price'];  ?>"   name="total_price[]" placeholder="0.00" />
+                                
+ 
+                              </span>
+                              </td>
+                              <td style="text-align:center;">
+                                 <button class='btn-cSche add addRowButton btn btnclr' type='button' value='Add Row'><i class="fa fa-plus"></i></button>
+                                 
+                                 &nbsp;<button class='delete btn btn-danger' type='button' value='Delete'><i class="fa fa-trash"></i></button>
+                              </td>
+                           </tr>
+
                                  <?php $n++;   } }  ?>
                               </tbody>
-                              <tfoot>
-                                 <input type="hidden" id="paid_convert" name="paid_convert"/>   <input type="hidden" id="bal_convert" name="bal_convert"/>
-                                 <tr>
-                                    <td style="text-align:right;" colspan="8"><b><?php echo display('Gross Sq.Ft') ?> :</b></td>
-                                    <td >
-                                       <input type="text" id="overall_gross_<?php echo $m; ?>" name="overall_gross[]"    class="overall_gross form-control" style="width: 60px"   readonly="readonly"  /> 
-                                    </td>
-                                    <td style="text-align:right;" colspan="2"><b><?php echo display('Net Sq.Ft') ?> :</b></td>
-                                    <td >
-                                       <input type="text" id="overall_net_<?php echo $m; ?>" name="overall_net[]"  class="overall_net form-control"  style="width: 60px"   readonly="readonly"  /> 
-                                    </td>
-                                    <td >
-                                       <input type="text" id="costpersqft_<?php echo $m; ?>" name="costpersqft[]"  class="costpersqft form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <td >
-                                       <input type="text" id="costperslab_<?php echo $m; ?>" name="costperslab[]"  class="costperslab form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <?php  if($all_invoice[0]['landing_cost']){ ?>
-                                    <td class="lc">
-                                       <input type="text" id="landingpersqft_<?php echo $m; ?>" name="landingpersqft[]"  class="landingpersqft form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <td class="lc">
-                                       <input type="text" id="landingperslab_<?php echo $m; ?>" name="landingperslab[]"  class="landingperslab form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <?php  }  ?>
-                                    <td >
-                                       <input type="text" id="salespricepersqft_<?php echo $m; ?>" name="salespricepersqft[]"  class="salespricepersqft form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <td >
-                                       <input type="text" id="salesslabprice_<?php echo $m; ?>" name="salesslabprice[]"  class="salesslabprice form-control"  style="width: 60px"  readonly="readonly"  /> 
-                                    </td>
-                                    <td >
-                                       <input type="text" id="overall_weight_<?php echo $m; ?>" name="overall_weight[]"  class="overall_weight form-control"  style="width: 70px"  readonly="readonly"  /> 
-                                    </td>
-                                    <td >
-                                       <span class="input-symbol-euro">     <input type="text" id="Total_<?php echo $m; ?>" name="total[]"   class="b_total form-control"   style="padding-top: 6px;width: 70px"    readonly="readonly"  />
-                                    </td>
-                                    <td colspan="21" style="text-align: center;">
-                                       <i id="buddle_<?php echo $m; ?>" class="btn-danger removebundle fa fa-minus"  aria-hidden="true"></i>    
-                                    </td>
-                                 </tr>
-                              </tfoot>
+                        
+                            
+
+                        <tfoot>
+                           <tr  style="height:50px;">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td colspan="5">
+                                 <span class="input-symbol-euro">
+                                     <input type="text"  name="total" id="Total_<?php echo $m.$n;  ?>"  class="ov_total form-control" style="width:165px;"     value="<?php  echo $all_invoice[0]['total_amount']; ?>"  readonly="readonly" />
+                                 </span>
+                              </td>
+                           </tr>
+                        </tfoot>
+
+ 
                            </table>
                            <?php   } ?>
-                           <!--<i id="buddle_1" class="addbundle fa fa-plus" style="float:right;color:white;background-color: #38469f;font-size:24px;" aria-hidden="true" onclick="addbundle(); "></i>    -->
-                           <i id="buddle_1" class="btnclr addbundle fa fa-plus" style=" padding: 10px 12px 10px 12px;margin-right: 18px;float:right; "   onclick="addbundle(); "aria-hidden="true"></i>
+                       
                         </div>
                      </div>
                      <table class="taxtab table table-bordered table-hover" style="border: 2px solid #d7d4d6;" >
@@ -700,9 +536,13 @@
                                  <?php } ?>
                               </datalist>
                            </td>
-                           <td  style="width:20%;"></td>
+                           <td  style="width:10%;"></td>
                         </tr>
                      </table>
+
+
+
+
                      <table border="0" style="table-layout: auto;border: 2px solid #d7d4d6;" class="overall table table-bordered table-hover" >
                         <tr>
                            <td   style="vertical-align:top;text-align:right;border:none;"></td>
@@ -711,33 +551,38 @@
                            <td  style="text-align:right;border:none;"> </td>
                         </tr>
                         <tr>
-                           <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall TOTAL') ?> :</b></td>
+                           
+                        <!-- <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall TOTAL') ?> :</b></td>
                            <td colspan="1" style="border:none;padding-bottom: 40px;"><span class="input-symbol-euro"><input type="text" id="Over_all_Total" name="Over_all_Total"  style="width:185px;" class="form-control" value="<?php echo $invoice_detail[0]['total_amount'];  ?>"  readonly="readonly"  /> </span></td>
-                           <td colspan="4" style="text-align:right;border:none;width:250px;"><b>  <?php echo display('TAX DETAILS') ?> :</b></td>
+                          -->
+                           <td colspan="4" style="text-align:right;border:none;width:1350px;"><b>  <?php echo display('TAX DETAILS') ?> :</b></td>
                            <td colspan="1" style="border:none;">  <span class="input-symbol-euro">     <input type="text" class="form-control" style="width:150px;"  id="tax_details" value="<?php echo $invoice_detail[0]['taxs'];  ?>" name="tax_details"  readonly="readonly" /></span></td>
                         </tr>
                         <tr>
-                           <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall Gross Sq.Ft') ?> :</b></td>
+                           <!-- <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall Gross Sq.Ft') ?> :</b></td>
                            <td colspan="1" style="border:none;"><input type="text" id="total_gross" name="total_gross" value="<?php echo  $invoice_detail[0]['total_gross'];  ?>"  class="form-control"   readonly="readonly"  /> </td>
+                           -->
                            <td colspan="4" style="text-align:right;border:none;"><b>  <?php echo display('GRAND TOTAL') ?> :</b></td>
                            <td colspan="1" style="border:none;">  <span class="input-symbol-euro">    <span class="input-symbol-euro">   <input type="text" id="gtotal"   class="form-control" style="width:150px;" name="gtotal" value="<?php echo $all_invoice[0]['gtotal'];  ?>"  readonly="readonly" /></td>
                         </tr>
                         <tr>
-                           <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall Net Sq.Ft') ?> :</b></td>
+                           <!-- <td  colspan="2" style="vertical-align:top;text-align:right;border:none;"><b>  <?php echo display('Overall Net Sq.Ft') ?> :</b></td>
                            <td colspan="1" style="border:none;"><input type="text" id="total_net" name="total_net" value="<?php echo  $invoice_detail[0]['total_net'];  ?>" class="form-control"    readonly="readonly"  /> </td>
-                           <td colspan="4" style="text-align:right;border:none;"><b><?php echo display('GRAND TOTAL') ?> :<br/><?php echo display('Preferred Currency') ?></b></td>
+                          -->
+                           <!-- <td colspan="4" style="text-align:right;border:none;"><b><?php echo display('GRAND TOTAL') ?> :<br/><?php echo display('Preferred Currency') ?></b></td> -->
                            <td colspan="1" style="border:none;">
                               <table>
-                                 <tr>
+                                 <!-- <tr>
                                     <td class="cus" name="cus" style="width: 40px;"></td>
                                     <td><input  type="text"  readonly id="customer_gtotal"  value="<?php echo $all_invoice[0]['gtotal_preferred_currency'];  ?>"   name="customer_gtotal"  required   /></td>
-                                 </tr>
+                                 </tr> -->
                               </table>
                            </td>
                         </tr>
                         <tr>
-                           <td colspan="2"  style="vertical-align:top;text-align:right;border:none;"><b><?php echo display('Overall Weight') ?> :</b></td>
+                           <!-- <td colspan="2"  style="vertical-align:top;text-align:right;border:none;"><b><?php echo display('Overall Weight') ?> :</b></td>
                            <td colspan="1" style="border:none;"><input type="text" id="total_weight" name="total_weight"   class="form-control"   readonly="readonly"  /></td>
+                          -->
                            <td colspan="4" class="amt" style="text-align:right;border:none;"><b><?php echo display('Amount Paid') ?> :</b></td>
                            <td style="border:none;">
                               <table border="0">
@@ -746,6 +591,11 @@
                                     <td> <input  type="text"  readonly id="amount_paid" style="width:-webkit-fill-available;"  name="amount_paid"  required   /></td>
                                  </tr>
                               </table>
+
+
+
+
+
                               <div class="container">
                                  <div class="cur-box">
                                     <select class="cur-item-1"   >
@@ -770,16 +620,30 @@
                                  </div>
                            </td>
                         </tr>
+
+
+
                         <tr>
-                        <td colspan="2"  style="vertical-align:top;text-align:right;border:none;"></td><td colspan="1" style="border:none;"></td>
-                        <td class="amt" colspan="4"  style="vertical-align:top;text-align:right;border:none;"><b><?php echo display('Balance Amount') ?> :</b></td>
+
+                        <td colspan="1"  style="vertical-align:top;text-align:right;border:none;"></td><td colspan="1" style="border:none;"></td>
+                        <td class="amt" colspan="2"  style="vertical-align:top;text-align:right;border:none;"><b><?php echo display('Balance Amount') ?> :</b></td>
                         <td class="amt" style="border:none;" colspan="1">
+                       
+                       
+
+
                         <table border="0">
                         <tr class="amt">
                         <td class="cus" name="cus" style="border:none;width: 40px;"></td>  <td style="border:none;">
                         <input  type="text"   readonly id="balance"  name="balance"  required   />                     
                         </td>     </tr>
-                        </table>
+                       
+                     
+                     </table>
+
+
+
+
                         </td>
                         </tr>
                         <tr>
@@ -1495,16 +1359,7 @@
                
                
             </script>
-            <!--      <div class="form-group row">
-               <label for="billing_address" class="col-sm-4 col-form-label">Message on invoice</label>
-               
-               <div class="col-sm-8">
-               
-                   <textarea rows="4" cols="50" name="billing_address" class=" form-control" placeholder='This will show upon the invoice' id=""> </textarea>
-               
-               </div>
-               
-               </div>  -->
+           
          </div>
       </div>
       <div class="modal fade" id="printconfirmodal" tabindex="-1" role="dialog" aria-labelledby="printconfirmodal" aria-hidden="true">
@@ -2036,17 +1891,7 @@ $(document).ready(function() {
       $('.hiden').show();
       $(".custocurrency_rate").val(Rate);
       calculate();
-   //   var num=$("#gtotal").val();
-    
-   //     var value=parseFloat(num*Rate);
-        
-   // var custo_final = isNaN(parseFloat(value)) ? 0 : parseFloat(value)
-   // $('#customer_gtotal').val(custo_final);  
-   // var v_g_t=$('#customer_gtotal').val();
-   //    var amount_paid =$("#amount_paid").val();
-   //    var bal= parseFloat(v_g_t-amount_paid);
-   //    console.log("Bal :");
-   //    $('#balance').val(bal);
+
           }
    )}
        });
@@ -2057,6 +1902,89 @@ $(document).ready(function() {
     
     
     
+
+
+
+
+
+   $(document).ready(function() {
+               var sum = 0;
+               $(document).on('input', '.supplier_slab_no, .thickness', function() {
+               sum = 0; // Reset sum on every input 
+               $(this).closest('table').find('tbody tr').each(function() {
+               var quantity = parseFloat($(this).find('.thickness').val()) || 0;
+               var rate = parseFloat($(this).find('.supplier_slab_no').val()) || 0;
+               var amount = quantity * rate;
+               $(this).find('.sum_amount').val(amount.toFixed(2));
+               
+               sum += amount;
+               });
+               var totalInput = $(this).closest('table').find('.ov_total');
+               totalInput.val(sum.toFixed(2));
+               calculate();
+               });
+               });
+
+ 
+
+
+
+
+               
+               function calculate(){
+              debugger;
+               var total=$('#Total_1').val();
+               var tax= $('#product_tax').val();
+               var percent='';
+               var hypen='-';
+               if(tax.indexOf(hypen) != -1){
+               var field = tax.split('-');
+               var percent = field[1];
+               
+               }else{
+               percent=tax;
+               }
+               percent=percent.replace("%","");
+               var answer = (percent / 100) * parseFloat(total);
+               var gtotal = parseFloat(total + answer);//fix
+               console.log("gtotal :" +gtotal);
+               var final_g= $('#final_gtotal').val();
+               var amt=parseFloat(answer)+parseFloat(total);
+               var num = isNaN(parseFloat(amt)) ? 0 : parseFloat(amt)
+               //   $('#gtotal').val(num.toFixed(2)); 
+               var AdditionalCost = parseFloat($('#someId').val()); 
+               
+               if (!isNaN(AdditionalCost) && AdditionalCost !== 0) {
+               
+                   var applandValue = parseFloat($('#landing_amount').val()) || 0; 
+               
+                   console.log("applandValue: ", applandValue);
+               
+                   var totalSum = num + applandValue; 
+               
+                   $('.gtotal').val(totalSum.toFixed(2)); 
+               } else {
+                  
+                  $('.gtotal').val(num.toFixed(2)); 
+               }
+               
+               $('#tax_details').val(answer.toFixed(2) +" ( "+tax+" )");
+               var bal_amt=$('#gtotal').val()-$('#amount_paid').val();
+               $('#balance').val(bal_amt.toFixed(2));
+               
+               }
+               
+
+
+
+
+
+
+
+
+
+
+
      
     
      $(document).ready(function(){
@@ -2205,6 +2133,9 @@ $(document).ready(function() {
    
     
     $(document).ready(function(){
+
+   //    alert('enter');
+   //   debugger;
     $('.hidden_button').hide();
        var dataString = {
            dataString : $("#histroy").serialize()
@@ -2220,7 +2151,7 @@ $(document).ready(function() {
     
            success:function (data) {
             
-            var gt=$('#customer_gtotal').val();
+            var gt=$('#gtotal').val();
             var amtpd=parseFloat(data.amt_paid);
             console.log(data);
             var bal= gt - amtpd;
@@ -2440,8 +2371,10 @@ $(document).ready(function() {
    
    
    function calculate(){
-   
-   var total=$('#Over_all_Total').val();
+
+   debugger;
+
+   var total=$('.ov_total').val();
    var tax= $('#product_tax').val();
    var percent='';
    var hypen='-';
@@ -2460,8 +2393,12 @@ $(document).ready(function() {
    var num = isNaN(parseFloat(amt)) ? 0 : parseFloat(amt)
    $('#gtotal').val(num.toFixed(2)); 
    var custo_amt=$('.custocurrency_rate').val(); 
+
    console.log("numhere :"+num +"-"+custo_amt);
+
    var value=num*custo_amt;
+ 
+
    var custo_final = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
    $('#customer_gtotal').val(custo_final.toFixed(2)); 
    $('#tax_details').val(answer.toFixed(2) +" ( "+tax+" )");
@@ -3047,6 +2984,7 @@ var id = netheight.slice(indexLastDot + 1);
    
    function gt(id){
    
+
    var final_g= $('#final_gtotal').val();
    
    var first=$("#Over_all_Total").val();
@@ -3737,7 +3675,8 @@ var id = netheight.slice(indexLastDot + 1);
    
 
        function calculate_ONROWADD(){
-   
+    
+ 
                   var total=$('#Over_all_Total').val();
                   var tax= $('#product_tax').val();
                   var percent='';
@@ -3771,16 +3710,55 @@ var id = netheight.slice(indexLastDot + 1);
 
 
 
+         
+   
+   $(document).ready(function () {
+   $(".cscheTable tbody").sortable();
+   $(".cscheTable tbody").disableSelection();
+   $(".ui-sortable").hover(function () {
+   });
+   
+   $(".addrow").on("click", function () {
+     var newRow = $(this).closest("tbody");
+     var counter = newRow.find('tr').length + 1;
+   
+     var cols = "<tr>";
+     cols += '<td class="col-sm-1 class_so_tt"><input type="text" name="prodt[]" class="form-control" /></td>';
+     cols += '<td class="col-sm-5"><input type="text" name="description[]" class="form-control" /></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input type="text" name="thickness[]" class="thickness form-control"/><button class="btn-cSche"><i class="fa fa-link" aria-hidden="true"></i></button></span></div></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input type="text" name="supplier_slab_no[]" class="supplier_slab_no form-control"/> </span></div></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input class="sum_amount form-control mobile_price" type="text" style="width: 90px;" readonly name="total_price[]" placeholder="0.00" /></span></div></td>';
+     cols += '<td class="col-sm-1"><button class="delete btn btn-danger" type="button" value="Delete"><i class="fa fa-trash"></i></button></td>';
+     cols += '<td class="col-sm-1"><button class="ibtnDel btn-cSche delete" id="deleterow"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>';
+     cols += "</tr>";
+   
+     newRow.prepend(cols);
+     //add_stt();
+   });
+   
+   $(".normalinvoice").on("click", ".ibtnDel", function (event) {
+     $(this).closest("tr").remove();
+   //  add_stt();
+   });
+   
+   $(".normalinvoice").on("click", ".addRowButton", function () {
+     var newRow = $(this).closest("tr").clone();
+     newRow.find('input').val(''); // Clear input values in the new row
+     newRow.find('.delete').removeClass('delete').addClass('ibtnDel').html('<i class="fa fa-trash-o" aria-hidden="true"></i>');
+     $(this).closest("tr").after(newRow);
+    // add_stt();
+   });
+   
+   $(".normalinvoice").on("click", ".ibtnDel", function () {
+     $(this).closest("tr").remove();
+   //add_stt();
+   });
+   });
+   
 
 
 
-
-
-
-
-
-
-
+ 
 
 
 
@@ -4076,7 +4054,13 @@ var id = netheight.slice(indexLastDot + 1);
      calculate();
        });
        
+
+
+
    $(document).on('click','.paypls',function (e) {
+
+      debugger;
+
    $('#amount_to_pay').val($('#balance').val());
        $('#payment_modal').modal('show');
       
@@ -4275,8 +4259,11 @@ var id = netheight.slice(indexLastDot + 1);
          
    }
    });
+
+
+
+
    var rowCount = $('.tbody tr').length;
-   
    var l = $('#landing_amount').val();
     console.log("Count :"+rowCount);
    var l_amt=l/rowCount;
@@ -4289,6 +4276,10 @@ var id = netheight.slice(indexLastDot + 1);
       });
    var lc=$(this).closest('table').find('.landing_cost').val();
    
+   
+
+
+
    
    $('.table').each(function() {
         $('.normalinvoice tbody').find('tr').each(function(){
@@ -4553,14 +4544,11 @@ location.reload();
         tableData.push(rowData);
     });
    
-    var postData = {
-                          tableData: tableData
-                     };
-                     postData[csrfName] = csrfHash;
-   
-   
-    // Perform an AJAX request to send the data to the controller
-    $.ajax({
+      var postData = {
+      tableData: tableData
+      };
+      postData[csrfName] = csrfHash;
+     $.ajax({
         type: "POST",
         dataType: "json",
         url: "<?php echo base_url(); ?>Cinvoice/payment_edit",
@@ -4572,11 +4560,14 @@ location.reload();
             // Handle any errors, if needed
         }
     });
-   
-    // Prevent the default form submission
-    event.preventDefault();
+     event.preventDefault();
    });
+
+
+
+
    $('#payment_history').click(function (event) {
+ 
         $('#current_in_id').val($('#invoice').val());
     var dataString = {
         dataString: $("#histroy").serialize()
@@ -4596,24 +4587,18 @@ location.reload();
    var overall_due = parseFloat(data.overall[0].overall_due);
    var overall_paid = parseFloat(data.overall[0].overall_paid);
    console.log("OVER : "+overallGTotal);
-   var gt = $('#customer_gtotal').val();
+   var gt = $('#gtotal').val();
             var amtpd = data.amt_paid;
    
-            var bal = $('#customer_gtotal').val() - data.amt_paid;
+            var bal = $('#gtotal').val() - data.amt_paid;
             
             
-            //  var total = "<table id='table2' class='newtable table table-striped table-bordered'><tbody><tr><td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Grand Total :  <?php  echo $currency;  ?>"+$('#customer_gtotal').val()+"<b></td>                              <td style='text-align:start;'><?php  echo $currency;  ?><span class='amt_paid_update'><input type='text' id='tl_amt_pd' value='"+data.amt_paid+"' name='tl_amt_pd'/></span></td>            <td><input type='hidden' value='"+$('#customer_gtotal').val()+"' name='t_unique'/><span style='font-weight:bold;'>INVOICE NO</span> :<input type='hidden' value='"+$('#invoice').val()+"' name='unq_inv'/>"+$('#invoice').val()+"</td>     <td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Advance :   <input type='text' name='advanceamount' id='advanceamount' readonly ></td>                                         </tr><tr><td class='td' style='text-align:end;'><b>Balance :<input type='text' id='my_bal_1' value='"+bal+"' name='my_bal_1'/><b></td><td class='due_pay' style='display:none;' id='balance-cell' data-currency='<?php  echo $currency;  ?>'>"+bal +"</td><td  data-currency='<?php echo $currency; ?>'><span style='font-weight:bold;'>Amount to Pay : </span><input type='text' id='amount_pay_unique' class='amount_pay' style='text-align:center;' placeholder='Enter Amount To Distribute'  name='amount_pay_1'/></td><td style='display:none'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td style='display:none' class='' data-currency='<?php echo $currency; ?>'><input type='text' name='updated_bal_uniq' class='balance-col'/></td><td> <input type='text' id='total-amount' ></td>                                                                                           </tr></tbody></table>"
-            // var table_header1 = "<div></div>  <thead><tr><td ><input type='hidden'  value='<?php  echo $customer_id;  ?>' name='customer_id' /></tr></thead><tbody>";
-            //  var table_header = "<div class='toggle-button' onclick='toggleTable()'>Payment History &#9660;</div><table id='toggle_table' class='table table-striped table-bordered'><thead style='FONT-WEIGHT:BOLD;'><tr><td style='display:none;'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td>Payment Date</td><td>Reference.NO</td><td>Bank Name</td><td>Amount Paid</td><td>Balance</td><td>Details</td></tr></thead><tbody>";
-          
-           
-               var total = "<table id='table2' class='newtable table table-striped table-bordered'><tbody><tr><td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Grand Total :  <?php  echo $currency;  ?>"+$('#customer_gtotal').val()+"<b></td>                       <td class='td' style='text-align:end;border-right: hidden;'><b>Total Amount Paid :<b></td>       <td style='text-align:start;'><?php  echo $currency;  ?><span class='amt_paid_update'><input type='text' id='tl_amt_pd' value='"+data.amt_paid+"' name='tl_amt_pd'/></span></td>            <td><input type='hidden' value='"+$('#customer_gtotal').val()+"' name='t_unique'/><span style='font-weight:bold;'>INVOICE NO</span> :<input type='hidden' id='unq_inv' value='"+$('#invoice').val()+"' name='unq_inv'/>"+$('#invoice').val()+"</td>     <td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Advance :   <input type='text' name='advanceamount' id='advanceamount' readonly ></td>                                         </tr><tr><td class='td' style='text-align:end;'><b>Balance :<input type='text' id='my_bal_1' value='"+bal+"' name='my_bal_1'/><b></td><td class='due_pay' style='display:none;' id='balance-cell' data-currency='<?php  echo $currency;  ?>'>"+bal +"</td><td  data-currency='<?php echo $currency; ?>'><span style='font-weight:bold;'>Amount to Pay : </span><input type='text' id='amount_pay_unique' class='amount_pay' style='text-align:center;' readonly  name='amount_pay_1'/></td><td style='display:none'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td style='display:none' class='' data-currency='<?php echo $currency; ?>'><input type='text' name='updated_bal_uniq' class='balance-col'/></td><td> <input type='text' id='total-amount' placeholder='Enter Amount To Distribute' ></td> </tr></tbody></table>"
+       
+               var total = "<table id='table2' class='newtable table table-striped table-bordered'><tbody><tr><td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Grand Total :  <?php  echo $currency;  ?>"+$('#gtotal').val()+"<b></td>                       <td class='td' style='text-align:end;border-right: hidden;'><b>Total Amount Paid :<b></td>       <td style='text-align:start;'><?php  echo $currency;  ?><span class='amt_paid_update'><input type='text' id='tl_amt_pd' value='"+data.amt_paid+"' name='tl_amt_pd'/></span></td>            <td><input type='hidden' value='"+$('#customer_gtotal').val()+"' name='t_unique'/><span style='font-weight:bold;'>INVOICE NO</span> :<input type='hidden' id='unq_inv' value='"+$('#invoice').val()+"' name='unq_inv'/>"+$('#invoice').val()+"</td>     <td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Advance :   <input type='text' name='advanceamount' id='advanceamount' readonly ></td>                                         </tr><tr><td class='td' style='text-align:end;'><b>Balance :<input type='text' id='my_bal_1' value='"+bal+"' name='my_bal_1'/><b></td><td class='due_pay' style='display:none;' id='balance-cell' data-currency='<?php  echo $currency;  ?>'>"+bal +"</td><td  data-currency='<?php echo $currency; ?>'><span style='font-weight:bold;'>Amount to Pay : </span><input type='text' id='amount_pay_unique' class='amount_pay' style='text-align:center;' readonly  name='amount_pay_1'/></td><td style='display:none'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td style='display:none' class='' data-currency='<?php echo $currency; ?>'><input type='text' name='updated_bal_uniq' class='balance-col'/></td><td> <input type='text' id='total-amount' placeholder='Enter Amount To Distribute' ></td> </tr></tbody></table>"
                var table_header1 = "<div></div>  <thead><tr><td ><input type='hidden'  value='<?php  echo $customer_id;  ?>' name='customer_id' /></tr></thead><tbody>";
-             var table_header = "<div class='toggle-button' onclick='toggleTable()'>Payment History &#9660;</div><table id='toggle_table' class='table table-striped table-bordered'><thead style='FONT-WEIGHT:BOLD;'><tr><td style='display:none;'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td>Payment Date</td><td>Reference.NO</td><td>Bank Name</td><td>Amount Paid</td><td>Balance</td><td>Details</td> <td>Payment Id</td> <td>Delete</td> </tr></thead><tbody>";
-           
-            // var total = "<table id='table2' class='table table-striped table-bordered'><tr><td rowspan='2' style='vertical-align: middle;text-align-last: center;'><b>Grand Total :  <?php  echo $currency;  ?>"+$('#customer_gtotal').val()+"<b></td><td class='td' style='border-right: hidden;'><b>Total Amount Paid :<b></td><td><?php  echo $currency;  ?><span class='amt_paid_update'>"+data.amt_paid+"</span></td><td><span style='font-weight:bold;'>INVOICE NO</span> :"+$('#invoice').val()+"</td></tr></tr><td class='td' style='border-right: hidden;'><b>Balance :<b></td><td id='balance-cell' data-currency='<?php  echo $currency;  ?>'>"+bal +"</td><td><input type='button' value='Make Payment' style='color:white;background-color: #38469f;' class='paypls btn btn-large'></td></tr></table>"
-            // var table_header = "<table class='table table-striped table-bordered'><thead style='FONT-WEIGHT:BOLD;'><tr><td>S.NO</td><td>Payment Date</td><td>Reference.NO</td><td>Bank Name</td><td>Amount Paid</td><td>Balance</td><td>Details</td><td>Action</td></tr></thead><tbody>";
-             var table_footer = "</tbody><tfoot><tr><td style='text-align: center;vertical-align: middle;' colspan='7' ><input type='button' class='btn' style='text-align:center;color:white;background-color:#38469f;font-weight:bold';  value='Update' id='edit_payment'/></td></tr></tfoot></table>";
+               var table_header = "<div class='toggle-button' onclick='toggleTable()'>Payment History &#9660;</div><table id='toggle_table' class='table table-striped table-bordered'><thead style='FONT-WEIGHT:BOLD;'><tr><td style='display:none;'><input type='text'  value='<?php if($all_invoice[0]['payment_id']){ echo $all_invoice[0]['payment_id']; }else{ echo $payment_id_new;}?>' name='payment_id_this_invoice' class='payment_id_val' id='payment_id'/></td><td>Payment Date</td><td>Reference.NO</td><td>Bank Name</td><td>Amount Paid</td><td>Balance</td><td>Details</td> <td>Payment Id</td> <td>Delete</td> </tr></thead><tbody>";
+          
+            var table_footer = "</tbody><tfoot><tr><td style='text-align: center;vertical-align: middle;' colspan='7' ><input type='button' class='btn' style='text-align:center;color:white;background-color:#38469f;font-weight:bold';  value='Update' id='edit_payment'/></td></tr></tfoot></table>";
              var html = "";
              var count = 1;
    
@@ -4996,8 +4981,7 @@ location.reload();
      updatedBalance  = amountToPay-amountPaid;
    console.log('up_bal :'+updatedBalance);
    
-    
-   
+     
    $(this).closest('tr').find('.balance-col').val(updatedBalance.toFixed(2));
    updateTotalbalanceToPay();
    }
@@ -5129,10 +5113,15 @@ location.reload();
         balanceCell.text('$' + balance.toFixed(2));
           $(this).find('.edit_balance').val(balance.toFixed(2));
     });
+    
      document.getElementById('tl_amt_pd').value = cumulativePayment.toFixed(2);
      var b=gtotal-cumulativePayment;
       document.getElementById('my_bal_1').value = b.toFixed(2);
    });
+
+
+
+   
    $(document).on('click','.save-button',function (event) {
    var row1 = $(this).closest('tr');
       var row = $(this).closest('table').find('tr'); // Get the closest table row
@@ -5812,30 +5801,19 @@ location.reload();
    		});
    
    	$(this).closest('table').find("#landing_amount").val(sum.toFixed(2));
-   
-   
      });
        
        
-       
-       
-       
-       
-       
-       
+        
        
        
                   
                   
          function search() {
-                  // 
-                    var input_supplier_block_no,
+                     var input_supplier_block_no,
                             input_supplier_slab_no,
                             input_bundle_no,
-                            // input_origin,
-                  
-                  
-                       
+                         
                   
                           filter_supplier_block_no,filter_supplier_slab_no,filter_bundle_no,
                           table,
@@ -5845,21 +5823,14 @@ location.reload();
                           name;
                           
                   
-                  
-                  
                          input_supplier_block_no = document.getElementById("myInput1");
                          input_supplier_slab_no = document.getElementById("myInput2");
                          input_bundle_no = document.getElementById("myInput3");
-                        //  input_origin = document.getElementById("myInput4");
-                          
-                  
+                       
                         filter_supplier_block_no = input_supplier_block_no.value.toUpperCase();    
                         filter_supplier_slab_no = input_supplier_slab_no.value.toUpperCase();    
                         filter_bundle_no = input_bundle_no.value.toUpperCase();   
-                        // filter_origin = input_origin.value.toUpperCase();
-                  
-                  
-                        
+                    
                       table = document.getElementById("product_table1");
                       tr = table.getElementsByTagName("tr");
                   
@@ -5867,18 +5838,11 @@ location.reload();
                               td = tr[i].getElementsByTagName("td")[5];
                               td1 = tr[i].getElementsByTagName("td")[6];
                               td2 = tr[i].getElementsByTagName("td")[2];
-                            //   td3 = tr[i].getElementsByTagName("td")[5];
-                             
-                        
                             if (td && td1 && td2  ) {
                   
                               supplier_block_no = (td.textContent || td.innerText).toUpperCase();
                               supplier_slab_no = (td1.textContent || td1.innerText).toUpperCase();
-                              bundle_no = (td2.textContent || td2.innerText).toUpperCase();
-                            //   origin = (td3.textContent || td3.innerText).toUpperCase();
-                             
-                  
-                  
+                              bundle_no = (td2.textContent || td2.innerText).toUpperCase();                       
                               if (
                                 supplier_block_no.indexOf(filter_supplier_block_no) > -1 &&
                                 supplier_slab_no.indexOf(filter_supplier_slab_no) > -1 &&
@@ -5900,6 +5864,379 @@ location.reload();
        
        
        
+    function calculate_ONROWADD(){
+      debugger;
+   var total=$('#Over_all_Total').val();
+   var tax= $('#product_tax').val();
+   var percent='';
+   var hypen='-';
+   if(tax.indexOf(hypen) != -1){
+   var field = tax.split('-');
+   var percent = field[1];
+   }else{
+   percent=tax;
+   }
+   percent=percent.replace("%","");
+   var answer = (percent / 100) * parseFloat(total);
+   var gtotal = parseFloat(total + answer);//fix
+   console.log("gtotal :" +gtotal);
+   var final_g= $('#final_gtotal').val();
+   var amt=parseFloat(answer)+parseFloat(total);
+   var num = isNaN(parseFloat(amt)) ? 0 : parseFloat(amt)
+   $('#gtotal').val(num.toFixed(2)); 
+   var custo_amt=$('.custocurrency_rate').val(); 
+   console.log("numhere :"+num +"-"+custo_amt);
+   var value=num*custo_amt;
+   var custo_final = isNaN(parseFloat(value)) ? 0 : parseFloat(value)
+   $('#customer_gtotal').val(custo_final.toFixed(2)); 
+   $('#tax_details').val(answer.toFixed(2) +" ( "+tax+" )");
+   var bal_amt=custo_final-$('#amount_paid').val();
+   $('#balance').val(bal_amt.toFixed(2));
+ 
+ }
+
+
+ 
+
+$(document).ready(function () {
+   $(".cscheTable tbody").sortable();
+   $(".cscheTable tbody").disableSelection();
+   $(".ui-sortable").hover(function () {
+   });
+   
+   $(".addrow").on("click", function () {
+     var newRow = $(this).closest("tbody");
+     var counter = newRow.find('tr').length + 1;
+   
+     var cols = "<tr>";
+     cols += '<td class="col-sm-1 class_so_tt"><input type="text" name="prodt[]" class="form-control" /></td>';
+     cols += '<td class="col-sm-5"><input type="text" name="description[]" class="form-control" /></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input type="text" name="thickness[]" class="thickness form-control"/><button class="btn-cSche"><i class="fa fa-link" aria-hidden="true"></i></button></span></div></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input type="text" name="supplier_slab_no[]" class="supplier_slab_no form-control"/> </span></div></td>';
+     cols += '<td class="col-sm-5"><div class="input-group"><input class="sum_amount form-control mobile_price" type="text" style="width: 90px;" readonly name="total_price[]" placeholder="0.00" /></span></div></td>';
+     cols += '<td class="col-sm-1"><button class="delete btn btn-danger" type="button" value="Delete"><i class="fa fa-trash"></i></button></td>';
+     cols += '<td class="col-sm-1"><button class="ibtnDel btn-cSche delete" id="deleterow"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>';
+     cols += "</tr>";
+   
+     newRow.prepend(cols);
+     //add_stt();
+   });
+   
+   $(".cscheTable").on("click", ".ibtnDel", function (event) {
+     $(this).closest("tr").remove();
+   //  add_stt();
+   });
+   
+   $(".cscheTable").on("click", ".addRowButton", function () {
+     var newRow = $(this).closest("tr").clone();
+     newRow.find('input').val(''); // Clear input values in the new row
+     newRow.find('.delete').removeClass('delete').addClass('ibtnDel').html('<i class="fa fa-trash-o" aria-hidden="true"></i>');
+     $(this).closest("tr").after(newRow);
+    // add_stt();
+   });
+   
+   $(".cscheTable").on("click", ".ibtnDel", function () {
+     $(this).closest("tr").remove();
+   //add_stt();
+   });
+   });
+   
+
+
+ 
+
+function cal_all(){
+var netheight = $(this).closest('table').find('.net_height').attr('id');
+const indexLastDot = netheight.lastIndexOf('_');
+var id = netheight.slice(indexLastDot + 1);
+var net_width='net_width_'+id;
+var net_height = 'net_height_'+ id;
+var netwidth=$('#'+net_width).val();
+var netheight=$('#'+net_height).val();
+var netresult=parseInt(netwidth) * parseInt(netheight);
+netresult=netresult/144;
+netresult = isNaN(netresult) ? 0 : netresult;
+var nresult=netresult.toFixed(2);
+$('#'+'net_sq_ft_'+id).val(netresult.toFixed(2));
+var cost_sqft=$('#cost_sq_ft_'+id).val();
+var tid=$(this).closest('table').attr('id');
+const indexLast = tid.lastIndexOf('_');
+var idt = tid.slice(indexLast + 1);
+var sales_sqft=cost_sqft *nresult;
+var x = $('#slab_no_'+id).val();
+var sales_slab_price=cost_sqft *nresult*x;
+
+console.log(parseInt(cost_sqft) +"*"+parseInt(nresult)+"*"+idt);
+$('#'+'sales_slab_amt_'+id).val(sales_slab_price.toFixed(2));
+$(this).closest('tr').find('.total_price').val(sales_slab_price.toFixed(2));
+sales_sqft = isNaN(sales_sqft) ? 0 : sales_sqft;
+$('#'+'sales_amt_sq_ft_'+id).val(sales_sqft.toFixed(2));
+$('.table').each(function() {
+
+var sum=0;
+
+$(this).closest('table').find('.total_price').each(function() {
+var v=$(this).val();
+sum += parseFloat(v);
+
+});
+$('#Total_'+idt).val(sum).trigger('change');
+var total_net=0;
+$('.table').each(function() {
+$(this).find('.net_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+total_net += parseFloat(precio);
+}
+});
+
+
+
+
+});
+$('#total_net').val(total_net.toFixed(2)).trigger('change');
+var costpersqft=0;
+$(this).find('.cost_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+costpersqft += parseFloat(precio);
+}
+});
+$('#costpersqft_'+idt).val(costpersqft).trigger('change');
+var cost_sq_slab=0;
+$(this).find('.cost_sq_slab').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+cost_sq_slab += parseFloat(precio);
+}
+});
+$('#costperslab_'+idt).val(cost_sq_slab).trigger('change');
+var sales_amt_sq_ft=0;
+$(this).find('.sales_amt_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+sales_amt_sq_ft += parseFloat(precio);
+}
+});
+$('#salespricepersqft_'+idt).val(sales_amt_sq_ft).trigger('change');
+var sales_slab_amt=0;
+$(this).find('.sales_slab_amt').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+sales_slab_amt += parseFloat(precio);
+}
+});
+$('#salesslabprice_'+idt).val(sales_slab_amt).trigger('change');
+var overall_gs=0;
+$('.table').each(function() {
+$(this).find('.gross_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+overall_gs += parseFloat(precio);
+}
+});
+});
+
+$('#total_gross').val(overall_gs).trigger('change');
+
+var overall_sum=0;
+$('.table').find('.b_total').each(function() {
+var v=$(this).val();
+overall_sum += parseFloat(v);
+
+});
+$('#Over_all_Total').val(overall_sum.toFixed(2)).trigger('change');
+
+
+
+
+});
+
+
+
+gt(id);
+}
+$(document).on('click', '.removebundle', function(){
+
+
+var tid=$(this).closest('table').attr('id');
+localStorage.setItem("delete_table",tid);
+console.log(localStorage.getItem("delete_table"));
+var remove_id=$(this).closest('table').attr('id');
+$('#'+remove_id).remove();
+var sum=0;
+$('#'+localStorage.getItem("delete_table")).find('.total_price').each(function() {
+var v=$(this).val();
+sum += parseFloat(v);
+});
+$('#'+localStorage.getItem("delete_table")).find('.b_total').val(sum).trigger('change');
+var sumnet=0;
+
+$('#'+localStorage.getItem("delete_table")).find('.net_sq_ft').each(function() {
+var v=$(this).val();
+if (!isNaN(v) && v.length !== 0) {
+sumnet += parseFloat(v);
+}
+
+});
+$('#'+localStorage.getItem("delete_table")).find('.overall_net').val(sumnet.toFixed(2));
+
+
+var sumgross=0;
+
+$('#'+localStorage.getItem("delete_table")).find('.gross_sq_ft').each(function() {
+var v=$(this).val();
+if (!isNaN(v) && v.length !== 0) {
+sumgross += parseFloat(v);
+}
+
+});
+$('#'+localStorage.getItem("delete_table")).find('.overall_gross').val(sumgross.toFixed(2));
+var total_net=0;
+$('.table').each(function() {
+$(this).find('.net_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+total_net += parseFloat(precio);
+}
+});
+
+
+
+});
+$('#total_net').val(total_net.toFixed(2)).trigger('change');
+var overall_gs=0;
+$('.table').each(function() {
+$(this).find('.gross_sq_ft').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+overall_gs += parseFloat(precio);
+}
+});
+});
+
+$('#total_gross').val(overall_gs).trigger('change');
+var sum_w=0;
+$('#'+localStorage.getItem("delete_table")).find('.weight').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+sum_w += parseFloat(precio);
+}
+});
+$('#'+localStorage.getItem("delete_table")).find('.overall_weight').val(sum_w).trigger('change');
+var total_w=0;
+$('.table').each(function() {
+$(this).find('.weight').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+total_w += parseFloat(precio);
+}
+});
+
+});
+$('#total_weight').val(total_w.toFixed(2)).trigger('change');
+var overall_sum=0;
+$('.table').find('.total_price').each(function() {
+var v=$(this).val();
+overall_sum += parseFloat(v);
+
+});
+$('#Over_all_Total').val(overall_sum.toFixed(2)).trigger('change');
+var rowCount = $('.tbody tr').length;
+//;
+var l = $('#landing_amount').val();
+console.log("Count :"+rowCount);
+var l_amt=l/rowCount;
+const rows = Array.from(document.querySelectorAll('tr.xdc'));
+rows.forEach(row => {
+row.classList.remove('deleted_row');
+});
+$('.normalinvoice tbody').find('tr').each(function(){
+$(this).closest('table').find('.landing_cost').val(0);
+});
+var lc=$(this).closest('table').find('.landing_cost').val();
+
+
+$('.table').each(function() {
+$('.normalinvoice tbody').find('tr').each(function(){
+//$("td.l_cost").remove();
+var tid=$(this).closest('table').attr('id');
+const indexLast = tid.lastIndexOf('_');
+var idt = tid.slice(indexLast + 1);
+var t_amt=   $(this).find('.cost_sq_slab').val();
+var net=   $(this).find('.net_sq_ft').val();
+net = isNaN(net) ? 0 : net;
+console.log("t_amt :"+t_amt);
+var final= parseInt(l_amt)+parseInt(t_amt);
+var l_cost_sqft=(parseInt(l_amt)+parseInt(t_amt))/net;
+console.log(parseInt(l_amt)+"."+parseInt(t_amt)+","+net);
+console.log("final :"+t_amt);
+
+//  $(this).find('.xdc').remove();
+$(this).find('.l_cost').val(l_cost_sqft);
+$(this).find('.l_cost_slab').val(final);
+if(lc != '' && typeof lc !== "undefined"){
+$('.land_th').show();
+$('.landing_cost').show();
+$('.lc').show();
+}
+var lcc=0;
+$('.table').each(function() {
+
+$(this).find('.l_cost').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+lcc += parseFloat(precio);
+}
+});
+
+$(this).closest('table').find('.landingpersqft').val(lcc).trigger('change');
+});
+var  lcc2=0;
+ $('.table').each(function() {
+
+$(this).find('.l_cost_slab').each(function() {
+var precio = $(this).val();
+if (!isNaN(precio) && precio.length !== 0) {
+lcc2 += parseFloat(precio);
+}
+});
+
+$(this).closest('table').find('.landingperslab').val(lcc2).trigger('change');
+});
+
+
+
+
+});});
+gt(id);
+
+});
+
+
+$(document).ready(function(){
+$('.removebundle').hide();
+$('#amt').hide();
+$('#bal').hide();
+});
+$('#paypls').on('click', function (e) {
+$('#m_payment').val($('#Ptype').val());
+$('#amount_to_pay').val($('#gtotal').val());
+$('#payment_modal').modal('show');
+
+e.preventDefault();
+
+});
+$('#landing_cost').on('click', function (e) {
+var bla = $('#invoice').val();
+
+//Set
+$('#dum_invoice').val(bla);
+$('#landing_modal').modal('show');
+
+e.preventDefault();
+
+});
        
        
        
@@ -5971,18 +6308,7 @@ location.reload();
    a:focus{
    color: #fff !important;
    }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+    
       
 .logo-9 i{
     font-size:80px;
@@ -6074,9 +6400,6 @@ location.reload();
            document.getElementById('attachment').files = dt.files;
        });
    
-
-
-
   var csrfName = '<?php echo $this->security->get_csrf_token_name();?>';
        var csrfHash = '<?php echo $this->security->get_csrf_hash();?>';
        $(document).on('click','.payinfodelete',function (event) {
@@ -6115,57 +6438,4 @@ location.reload();
    });
    });
 
-
-
-//       var csrfName = '<?php echo $this->security->get_csrf_token_name();?>';
-//       var csrfHash = '<?php echo $this->security->get_csrf_hash();?>';
-//       $(document).on('click','.payinfodelete',function (event) {
-//         event.preventDefault();
-    
-    
-//         var payment_id  =   $(this).closest('tr').find('.pay_id').val() ;
-//         var paid_amt = $(this).closest('tr').find('.palist').text();
-//         var bal = $(this).closest('tr').find('.balist').text();
-     
-//         var unq_inv=$('#unq_inv').val();
-
-     
-//       var dataString = {
-//           bal : bal,
-//           payment_id : payment_id,
-//           paid_amt :paid_amt,
-
-//           unq_inv:unq_inv
-
-//       };
-
-
-
-
-
-//       dataString[csrfName] = csrfHash;
-//       $.ajax({
-//           type:"POST",
-//           dataType:"json",
-//           url:"<?php echo base_url(); ?>Cinvoice/delete_the_payment",
-//           data:dataString,
-//           success:function (data1) {
-//           console.log(data1);
-//          $("#bodyModal1").html("Payment Delete Successfully");
-//          $('#myModal1').modal('show');
-//          window.setTimeout(function(){
-//           $('#payment_history_modal').modal('hide');
-//           $('.modal-backdrop').remove();
-//           $('#myModal1').modal('hide');
-//           location.reload();
-//       }, 2000);
-//   }
-//   });
-//   });
-   
-   
-   
-   
-   
-   
 </script>

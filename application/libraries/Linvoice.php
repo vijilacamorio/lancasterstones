@@ -1460,6 +1460,8 @@ public function invoice_add_form() {
        
        
         $data = array(
+ 
+
                  'supplier_block_no'=>$supplier_block_no,
                   'bundle' => $product_bundle,
                     'servic_provider'=>$servic_provider,
@@ -1518,17 +1520,18 @@ public function invoice_add_form() {
             'bank_list'       => $bank_list,
             'bank_id'         => $invoice_detail[0]['bank_id'],
             'paytype'         => $invoice_detail[0]['payment_type'],
-            'account_category'         => $all_invoice[0]['account_category'],
-            'sub_category'         => $all_invoice[0]['sub_category'],
-            'account_subcat'         => $all_invoice[0]['account_subcat'],
+             
             'invoice_detail'=>$invoice_detail,
             'employee_id_get' =>  $employee_id_get,
             'edit_invoicedata' => $edit_invoicedata,
             'edit_files' => $edit_files,
             'setting_detail' => $setting_detail,
             'get_user_id' =>  $get_user_id
+
+ 
+
         );
-// print_r($invoice_detail[0]['gtotal']);
+// print_r($all_invoice);
 
          $chapterList = $CI->parser->parse('invoice/edit_invoice_form', $data, true);
         return $chapterList;
